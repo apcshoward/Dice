@@ -1,13 +1,29 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Dice extends PApplet {
+
    Die lowellDice;
 int value=(int)(Math.random()*6)+1;
 int sum=0;
-void setup()
+public void setup()
 {
 	size(500,500);
 	background(0,100,0);
 	noLoop();
 }
-void draw()
+public void draw()
 {
 	background(0);
 	for(int myX=0;myX<500;myX=myX+50)
@@ -32,7 +48,7 @@ void draw()
 	textAlign(CENTER);
 	text(sum,250,260);
 }
-void mousePressed()
+public void mousePressed()
 {
 	redraw();
 	sum=0;
@@ -46,25 +62,25 @@ class Die
 		x=myX;
 		y=myY;
 	}
-	void roll()
+	public void roll()
 	{
-		if(Math.random()<0.16)
+		if(Math.random()<0.16f)
 		{
 			value=1;
 		}
-		else if(Math.random()<0.33)
+		else if(Math.random()<0.33f)
 		{
 			value=2;
 		}
-		else if(Math.random()<0.5)
+		else if(Math.random()<0.5f)
 		{
 			value=3;
 		}
-		else if(Math.random()<0.67)
+		else if(Math.random()<0.67f)
 		{
 			value=4;
 		}
-		else if(Math.random()<0.83)
+		else if(Math.random()<0.83f)
 		{
 			value=5;
 		}
@@ -73,7 +89,7 @@ class Die
 			value=6;
 		}
 	}
-	void show()
+	public void show()
 	{
 		stroke(255);
 		strokeWeight(3);
@@ -122,4 +138,13 @@ class Die
 			point(x+40,y+40);
 		}
 	}
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Dice" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
